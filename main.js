@@ -10,7 +10,11 @@ const resetBtn = document.getElementById('reset-btn');
 const canvasSize = 600;
 let cellNumber = 16;
 
-window.addEventListener('load', createCanvas(canvas, canvasSize / cellNumber, canvasSize));
+window.addEventListener('load', () => {
+    removeCells(canvas);
+    createCanvas(canvas, canvasSize / cellNumber, canvasSize);
+    resetCells(canvas);
+})
 
 resetBtn.addEventListener('click', () => {
   resetCells(canvas);
@@ -25,9 +29,9 @@ canvas.addEventListener('mouseover', (event) => {
 
 resizeBtn.addEventListener('click', () => {
   cellNumber = prompt('Enter the size of the grid: [1-50]');
-  if(cellNumber < 1 || cellNumber > 50) return alert('Please enter a number between 1-50.')
-  if (cellNumber !== null && (isNaN(cellNumber) === false
-      && cellNumber[0] !== '+' && cellNumber [0] !== '-')) {
+  if (cellNumber < 1 || cellNumber > 50) return alert('Please enter a number between 1-50.')
+  if (cellNumber !== null && (isNaN(cellNumber) === false &&
+      cellNumber[0] !== '+' && cellNumber[0] !== '-')) {
     removeCells(canvas);
     createCanvas(canvas, canvasSize / cellNumber, canvasSize);
     resetCells(canvas);
